@@ -1,4 +1,6 @@
 ja:
+  view:
+    sample: さんぷるサンプル
   activerecord:
     models:
       task: "タスク"

@@ -43,4 +43,9 @@ end
     expect(page).to have_content 'test_task_01'
     expect(page).to have_content 'testtesttest'
   end
+  
+  # scenario "タスク昇順テスト" do
+  #   visit tasks_path
+  # expect(Task.order("created_at DESC").each(&:id))
+  # end
 end
