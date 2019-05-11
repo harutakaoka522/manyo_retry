@@ -1,10 +1,19 @@
 require 'rails_helper.rb'
 
 RSpec.feature "タスク管理機能", type: :feature do
+
+ # background do
+ # あらかじめタスク一覧のテストで使用するためのタスクを二つ作成する
+ #   FactoryBot.create(title: 'test_task_01', content: 'testtesttest', end_limit: '2019-05-25', status: '未着手', priority: '高')
+ #   FactoryBot.create(title: 'test_task_02', content: 'samplesample', end_limit: '2019-05-27', status: '未着手', priority: '高')
+ #   FactoryBot.create(title: 'test_task_03', content: 'samplesample', end_limit: '2019-05-29', status: '未着手', priority: '高')
+ # end
+
+
   before do
     # 事前にタスクを作成する
-    Task.create!(title: 'test_task_01', content: 'testtesttest', end_limit: '2019-05-22', status: '未着手', priority: '高')
-    Task.create!(title: 'test_task_02', content: 'samplesample', end_limit: '2019-05-22', status: '未着手', priority: '高')
+    Task.create!(title: 'test_task_01', content: 'testtesttest', end_limit: '2019-05-25', status: '未着手', priority: '高')
+    Task.create!(title: 'test_task_02', content: 'samplesample', end_limit: '2019-05-27', status: '未着手', priority: '高')
   end
 
 
@@ -44,8 +53,16 @@ end
     expect(page).to have_content 'testtesttest'
   end
   
-  # scenario "タスク昇順テスト" do
-  #   visit tasks_path
-  # expect(Task.order("created_at DESC").each(&:id))
-  # end
+   #scenario "タスクが作成日時の降順に並んでいるかのテスト" do
+   #  visit tasks_path
+   #  expect(Task.order("created_at DESC").each(&:id))
+   #end
+
+  scenario "タスクが作成日時の降順に並んでいるかのテスト" do
+    visit tasks_path
+    click_on "詳細",match: :first
+    expect(page).to have_content "test_task_02"
+   end
 end
+
+#save_and_open_page
