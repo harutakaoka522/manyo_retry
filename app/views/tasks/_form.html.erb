@@ -23,17 +23,17 @@
 
   <div class="task_end_limit">
     <%= form.label :終了期限 %>
-    <%= form.text_field :end_limit %>
+    <%= form.date_field :end_limit ,default: Date.new(2019, 5, 1) %>
   </div>
 
   <div class="task_status">
     <%= form.label :状態 %>
-    <%= form.text_field :status %>
+    <%= form.select :status,[["未着手","未着手"],["着手","着手"],["完了","完了"]] %>
   </div>
 
   <div class="task_priority">
     <%= form.label :優先順位 %>
-    <%= form.text_field :priority %>
+    <%= form.select :priority,[["低","低"],["中","中"],["高","高"]] %>
   </div>
 
   <%= form.submit %>

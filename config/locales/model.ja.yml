@@ -1,0 +1,32 @@
+ja:
+  view:
+    sample: さんぷるサンプル
+  activerecord:
+    models:
+      task: "タスク"
+      user: "ユーザー"
+    attributes:
+      task:
+        title: "タスク名"
+        content: "タスク詳細"
+        end_limit: "終了期限"
+        priority: "優先順位"
+        status: "状態"
+        Profile: "プロフィール"
+        Logout: "ログアウト"
+        Sign up: "サインアップ"
+        Login: "ログイン"
+      user:
+        name: "名前"
+        email: "メールアドレス"
+        current_password: "現在のパスワード"
+        password: "パスワード"
+        password_confirmation: "確認用パスワード"
+        remember_me: "ログインを記憶"
+        image: "写真"
+        Profile: "プロフィール"
+        Logout: "ログアウト"
+        Sign up: "サインアップ"
+        Login: "ログイン"
+
+
