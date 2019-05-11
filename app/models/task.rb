@@ -1,6 +1,8 @@
 class Task < ApplicationRecord
   validates :title, presence: true
+  validates :title, length: { maximum: 20 }  
   validates :content, presence: true
+  validates :content, length: { maximum: 50 }  
 #  validates :end_limit, presence: true
  # validates :priority, presence: true
  # validates :status, presence: true
