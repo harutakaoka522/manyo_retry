@@ -64,16 +64,17 @@ label
 　 Email: 
 　 Password:
 
-  ③コミットする
+  ②コミットする
   git add .
   git commit -m "コミットする内容"
 
-  ②Herokuに新しいアプリケーションを作成する
+  ③Herokuに新しいアプリケーションを作成する
   heroku create
   ※heroku git:remote -a manyo-haruharutakaoka
 
 　④Herokuにデプロイをする
-  git push heroku (stepx)
+    1/git push heroku (stepx)
+    2/git push heroku 現在のブランチ名:master
 
 　⑤データベースの移行
   heroku run rails db:migrate
