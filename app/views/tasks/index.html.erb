@@ -1,11 +1,25 @@
 <h1>タスク一覧</h1>
 
 <p><%= notice %></p>
+
+<%= search_form_for @q do |f| %>
+    <%= f.label :title_cont, "タスク名検索" %>
+    <%= f.search_field :title_cont %>
+
+    <%= f.label :status_cont, "状態検索" %>
+    <%= f.search_field :status_cont %>
+    
+    <%= f.hidden_field :search, value: 'true' %>
+
+
+    <%= f.submit "検索" %>
+    <% end %>
+
 <table>
 <tr>
 <th>タスク名</th>
 <th>タスク詳細</th>
-<th>終了期限</th>
+<th><%= sort_link(@q, :end_limit, '終了期限') %></th>
 <th>状態</th>
 <th>優先順位</th>
 </tr>
