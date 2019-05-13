@@ -1,8 +1,15 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+
     def index
-      #@tasks = Task.all
       @tasks = Task.all.order(created_at: :desc)
+        #作成したものから上に表示
+      if params[:sort_expired]
+        @tasks = Task.all.order(end_limit: :desc)
+        #終了期限の降順に並び替えられたタスク一覧ページ
+      else
+        @tasks = Task.all.order(created_at: :desc)
+      end
     end
   
     def new

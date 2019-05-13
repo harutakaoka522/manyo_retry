@@ -27,7 +27,8 @@
 </table>
 <br>
 <%= link_to '新しくタスクを投稿する', new_task_path %>
-
+<br>
+<%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>
 
 <br>
 <%= t('view.sample') %>
