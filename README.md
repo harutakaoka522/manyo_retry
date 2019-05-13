@@ -53,3 +53,34 @@ task_label（中間テーブル）
 label
   id                    #ラベルテーブルと中間テーブルとアソシエーション
   category              #labelの種類
+  
+
+  #heroku デプロイ方法
+
+　①Herokuにログインする
+　ターミナルでheroku loginコマンドを実行してログインを行います。
+　heroku login
+
+　 Email: 
+　 Password:
+
+  ②コミットする
+  git add .
+  git commit -m "コミットする内容"
+
+  ③Herokuに新しいアプリケーションを作成する
+  heroku create
+  ※heroku git:remote -a manyo-haruharutakaoka
+
+　④Herokuにデプロイをする
+    1/git push heroku (stepx)
+    2/git push heroku 現在のブランチ名:master
+
+　⑤データベースの移行
+  heroku run rails db:migrate
+
+　※メモ
+  アプリ名を確認する方法
+  heroku config
+
+
