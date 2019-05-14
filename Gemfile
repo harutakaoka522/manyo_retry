@@ -12,6 +12,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'ransack'
+gem 'kaminari', '~> 0.17.0'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.6.0'
