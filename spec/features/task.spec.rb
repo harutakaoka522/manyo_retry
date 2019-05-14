@@ -13,7 +13,7 @@ RSpec.feature "タスク管理機能", type: :feature do
   before do
     # 事前にタスクを作成する
     Task.create!(title: 'test_task_01', content: 'testtesttest', end_limit: '2019-12-25', status: '未着手', priority: '高')
-    Task.create!(title: 'test_task_02', content: 'samplesample', end_limit: '2019-06-25', status: '完了', priority: '高')
+    Task.create!(title: 'test_task_02', content: 'samplesample', end_limit: '2019-06-25', status: '完了', priority: '低')
   end
 
 
@@ -85,7 +85,7 @@ end
    scenario "状態が検索されているかのテスト" do
 
    visit tasks_path
-   fill_in '状態検索', with: '完了' 
+   select '完了', from: '状態検索'
    click_on "検索"
    expect(page).to have_content "完了"
   end
@@ -94,10 +94,19 @@ end
 
     visit tasks_path
     fill_in 'タスク名検索', with: 'test_task_02' 
-    fill_in '状態検索', with: '完了' 
+    select '完了', from: '状態検索'
     click_on "検索"
     expect(page).to have_content "test_task_02"
     expect(page).to have_content "完了"
+    
+   end
+
+   scenario "タスクがプライオリティ高いにソートされているかのテスト" do
+    #visit tasks_path(sort_expired: "true")
+    visit tasks_path
+    click_on "優先順位が高い順にソートする"
+    click_on "詳細",match: :first
+    expect(page).to have_content "test_task_01"
     save_and_open_page
    end
 

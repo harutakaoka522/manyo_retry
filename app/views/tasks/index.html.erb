@@ -7,8 +7,10 @@
     <%= f.search_field :title_cont %>
 
     <%= f.label :status_cont, "状態検索" %>
-    <%= f.search_field :status_cont %>
+    <%= f.select :status_cont, @statues, include_blank: true %>
     
+ 
+
     <%= f.hidden_field :search, value: 'true' %>
 
 
@@ -43,6 +45,8 @@
 <%= link_to '新しくタスクを投稿する', new_task_path %>
 <br>
 <%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>
+<br>
+<%= link_to "優先順位が高い順にソートする", tasks_path(sort_priority: "true") %>
 
 <br>
 <%= t('view.sample') %>

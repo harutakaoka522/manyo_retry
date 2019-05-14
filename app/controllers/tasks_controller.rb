@@ -4,8 +4,15 @@ class TasksController < ApplicationController
   def index
     @tasks = Task.all.order(created_at: :desc)
     @q = Task.ransack(params[:q])
+    @statues = ["未着手","着手中","完了"]
+    #@priority = {高: 0, 中: 1, 低: 2}
+    
     if params[:sort_expired]
       @tasks = Task.all.order(end_limit: :desc)
+    end
+
+    if params[:sort_priority]
+      @tasks = Task.order(priority: :desc)
     end
 
     if params[:q]
