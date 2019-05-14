@@ -13,7 +13,7 @@ RSpec.feature "タスク管理機能", type: :feature do
   before do
     # 事前にタスクを作成する
     Task.create!(title: 'test_task_01', content: 'testtesttest', end_limit: '2019-12-25', status: '未着手', priority: '高')
-    Task.create!(title: 'test_task_02', content: 'samplesample', end_limit: '2019-06-25', status: '未着手', priority: '高')
+    Task.create!(title: 'test_task_02', content: 'samplesample', end_limit: '2019-06-25', status: '完了', priority: '高')
   end
 
 
@@ -64,16 +64,44 @@ end
     expect(page).to have_content "test_task_02"
    end
 
-   scenario "タスクが作成日時の降順に並んでいるかのテスト" do
+   scenario "タスクが終了期限順にソートされているかのテスト" do
     #visit tasks_path(sort_expired: "true")
     visit tasks_path
     click_on "終了期限でソートする"
     
     click_on "詳細",match: :first
     expect(page).to have_content "2019-12-25"
-    save_and_open_page    
     #expect(Task.order("end_limit DESC").map(&:id))  
    end
+
+   scenario "タスクが検索されているかのテスト" do
+
+    visit tasks_path
+    fill_in 'タスク名検索', with: 'test_task_01' 
+    click_on "検索"
+    expect(page).to have_content "test_task_01"
+   end
+
+   scenario "状態が検索されているかのテスト" do
+
+   visit tasks_path
+   fill_in '状態検索', with: '完了' 
+   click_on "検索"
+   expect(page).to have_content "完了"
+  end
+
+  scenario "タスクと状態が検索されているかのテスト" do
+
+    visit tasks_path
+    fill_in 'タスク名検索', with: 'test_task_02' 
+    fill_in '状態検索', with: '完了' 
+    click_on "検索"
+    expect(page).to have_content "test_task_02"
+    expect(page).to have_content "完了"
+    save_and_open_page
+   end
+
+
 end
 
 #save_and_open_page
