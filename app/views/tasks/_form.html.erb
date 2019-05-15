@@ -10,33 +10,36 @@
   </ul>
   </div>
   <% end %>
-
+  <div class="show_edit">
   <div class="task_title">
-    <%= form.label :タスク名 %>
+    <%= form.label :タスク名 %><br>
     <%= form.text_field :title %>
   </div>
 
   <div class="task_content">
-    <%= form.label :タスク詳細 %>
-    <%= form.text_field :content %>
+    <%= form.label :タスク詳細 %><br>
+    <%= form.text_area :content %>
   </div>
 
   <div class="task_end_limit">
-    <%= form.label :終了期限 %>
+    <%= form.label :終了期限 %><br>
     <%= form.date_field :end_limit ,default: Date.new(2019, 5, 1) %>
   </div>
+  <br>
 
   <div class="task_status">
     <%= form.label :状態 %>
     <%= form.select :status,[["未着手","未着手"],["着手中","着手中"],["完了","完了"]] %>
   </div>
 
-  <div class="task_priority">
+  <div class="task_priority"><br>
     <%= form.label :優先順位 %>
     <%= form.select :priority,[["低","低"],["中","中"],["高","高"]] %>
   </div>
-
+  <br>
   <%= form.submit %>
 <% end %>
+<br>
 
   <%= link_to "タスク一覧画面にもどる", tasks_path %>
+  </div>
