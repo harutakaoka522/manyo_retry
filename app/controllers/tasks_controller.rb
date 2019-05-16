@@ -1,38 +1,29 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :not_current_user, only: [:show, :edit, :update, :destroy]
+  before_action :not_login
 
   def index
-    #@tasks = Task.all.order(created_at: :desc)
-    #@tasks = @tasks.page(params[:page]).per(10)
+    @tasks = current_user.tasks
     @tasks = Task.page(params[:page]).per(10).order('created_at DESC')
     @q = Task.ransack(params[:q])
     @statues = ["未着手","着手中","完了"]
-    @priority = {高:0, 中:1 ,低:2 }
-   # @tasks = @tasks.paginate_array([], total_count: 145).page(params[:page]).per(10)
+    @priority = {高: 0, 中: 1, 低: 2}
+
     if params[:sort_expired]
       @tasks = Task.all.order(end_limit: :desc)
-      #@tasks = Task.page(params[:page]).per(10).order(end_limit: :desc)
     end
 
     if params[:sort_priority]
-      @tasks = Task.order(priority: :desc)
-      #tasks = @priority.sort_by{|key,val| val}
-      #binding.pry
-    
-      #@tasks = Task.page(params[:page]).per(10).order(priority: :desc)
+      #@tasks = Task.order(priority: :desc)
+      @tasks = Task.page(params[:page]).per(10).order(priority: :desc)
     end
 
     if params[:q]
-      #@tasks = @q.result(distinct: true).page(params[:page]).per(10)
-      #@tasks = Task.page(params[:page]).per(10)
-
-
       @tasks = @q.result(distinct: true)
-      #@tasks = @tasks.page(params[:page]).per(10)
     end
 
     @tasks = @tasks.page(params[:page]).per(10)
-
   end
   
     def new
@@ -47,7 +38,7 @@ class TasksController < ApplicationController
     end
       
     def create
-      @task = Task.new(task_params)
+      @task = current_user.tasks.build(task_params)
       if @task.save
         redirect_to tasks_path, notice: "タスクを作成しました"
       else
@@ -59,7 +50,7 @@ class TasksController < ApplicationController
     end
   
     def confirm
-      @task = Task.new(task_params)
+      @task = current_user.tasks.build(task_params)
       render :new if @task.invalid?
     end
   
@@ -84,6 +75,12 @@ class TasksController < ApplicationController
   
     def set_task
       @task = Task.find(params[:id])
+    end
+
+    def not_current_user
+      if @current_user.id !=  @task.user.id
+        redirect_to tasks_path, alert: '権限がありません'
+      end
     end
 end
   

@@ -13,6 +13,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'ransack'
 gem 'kaminari', '~> 0.17.0'
+gem 'bcrypt', '3.1.11'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.6.0'
@@ -20,6 +21,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'spring-commands-rspec'
+  gem 'faker'
 end
 
 group :development do
@@ -38,6 +40,7 @@ group :test do
    gem 'chromedriver-helper'
    gem 'capybara'
    gem 'launchy'
+   gem 'database_cleaner'
  end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

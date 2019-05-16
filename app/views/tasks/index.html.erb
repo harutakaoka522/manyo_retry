@@ -1,6 +1,5 @@
 
 <body>
-<p><%= notice %></p>
 <header>
 <p>タスク一覧</p>
 </header>
@@ -24,7 +23,7 @@
     <%= link_to "優先順位が高い順にソートする", tasks_path(sort_priority: "true") ,class: 'btn btn-primary btn-sm' %>
 <br>
 <div class="table-responsive">
-    <table class="table table-striped">
+<table class="table table-striped">
 <tr>
 <th>タスク名</th>
 <th>タスク詳細</th>
@@ -37,6 +36,7 @@
 </tr>
 
 <% @tasks.each do |task| %>
+    <% if current_user.id == task.user_id %>　
 <tr>
 
 <td><%= task.title %></td>
@@ -49,6 +49,7 @@
 <td><%= link_to '編集', edit_task_path(task.id) %></td>
 <td><%= link_to '削除', task_path(task.id), method: :delete,data: { confirm: '本当に削除していいですか？' } %></td>
 </tr>
+<% end %>
 <% end %>
 <%= paginate @tasks %>
 </table>

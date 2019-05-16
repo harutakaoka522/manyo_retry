@@ -11,6 +11,13 @@
   <body>
   <div class="container">
 
+  <p><% flash.each do |key, value| %>
+    <%= content_tag(:div, value, class: "#{key}") %>
+    <% end %></p>
+    
+
+
+
     <%= yield %>
     </div>
 
@@ -18,7 +25,13 @@
 
     <footer class="footer">
   <div class="container">
-    <p class="text-muted">Man-Yo! Kadai!</p>
+  <% if logged_in? %>
+  <%= link_to "Profile", user_path(current_user.id) ,class: 'btn btn-success btn-sm' %>
+  <%= link_to "Logout", session_path(current_user.id), method: :delete ,class: 'btn btn-success btn-sm' %>
+<% else %>
+　　　<%= link_to "Sign up", new_user_path ,class: 'btn btn-info btn-sm' %>
+    <%= link_to "Login", new_session_path ,class: 'btn btn-info btn-sm' %>
+<% end %>
   </div>
 </footer>
   </body>

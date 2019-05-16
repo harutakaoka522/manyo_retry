@@ -11,9 +11,39 @@ RSpec.feature "タスク管理機能", type: :feature do
 
 
   before do
+    visit new_user_path
+    fill_in '名前', with: 'test' 
+    fill_in 'メールアドレス', with: 'test@gmail.com' 
+    fill_in 'パスワード', with: 'password' 
+    fill_in '確認用パスワード', with: 'password' 
+    click_on "Create my account"
+    
+    click_on "タスク一覧へ"
+    click_on "新しくタスクを投稿する"
     # 事前にタスクを作成する
+
+    # fill_in 'task_title', with: 'test_task_01'
+    # fill_in 'task_content', with: 'testtesttest'
+    # fill_in 'task_end_limit', with: '2019-12-25'
+    # select '未着手', from: 'task_status'
+    # select '高', from: 'task_priority'
+    # click_on "登録する"
+    # click_on "登録する"
+
+    # save_and_open_page
+    # click_on "新しくタスクを投稿する"
+
+    # fill_in 'task_title', with: 'test_task_02'
+    # fill_in 'task_content', with: 'samplesample'
+    # fill_in 'task_end_limit', with: '2019-06-25'
+    # select '完了', from: 'task_status'
+    # select '低', from: 'task_priority'
+    # click_on "登録する"
+    # click_on "登録する"
     Task.create!(title: 'test_task_01', content: 'testtesttest', end_limit: '2019-12-25', status: '未着手', priority: '高')
     Task.create!(title: 'test_task_02', content: 'samplesample', end_limit: '2019-06-25', status: '完了', priority: '低')
+    visit tasks_path
+    
   end
 
 
@@ -107,7 +137,6 @@ end
     click_on "優先順位が高い順にソートする"
     click_on "詳細",match: :first
     expect(page).to have_content "test_task_01"
-    save_and_open_page
    end
 
 
