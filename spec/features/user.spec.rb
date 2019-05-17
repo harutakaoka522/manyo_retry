@@ -2,14 +2,6 @@ require 'rails_helper.rb'
 
 RSpec.feature "タスク管理機能", type: :feature do
 
- # background do
- # あらかじめタスク一覧のテストで使用するためのタスクを二つ作成する
- #   FactoryBot.create(title: 'test_task_01', content: 'testtesttest', end_limit: '2019-05-25', status: '未着手', priority: '高')
- #   FactoryBot.create(title: 'test_task_02', content: 'samplesample', end_limit: '2019-05-27', status: '未着手', priority: '高')
- #   FactoryBot.create(title: 'test_task_03', content: 'samplesample', end_limit: '2019-05-29', status: '未着手', priority: '高')
- # end
-
-
   before do
     # 事前にテストユーザーを登録する
     visit new_user_path
