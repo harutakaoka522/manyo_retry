@@ -1,6 +1,8 @@
+<div class="show_edit">
 <h3>以下の内容で、送信する。</h3>
 
 <%= form_with(model: @task, url: tasks_path, local:true) do |form| %>
+
   <%= form.hidden_field :title %>
   <%= form.hidden_field :content %>
   <%= form.hidden_field :end_limit %>
@@ -21,3 +23,4 @@
   <%= form.hidden_field :content %>
   <%= form.submit "もどる", name: 'back' %>
 <% end %>
+</div>

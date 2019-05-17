@@ -1,0 +1,6 @@
+<header>
+<p><%= @user.name %>のページ</p>
+</header>
+<%= link_to 'タスク一覧へ', tasks_path ,class: 'btn btn-primary btn-sm' %>
+
+<p>メールアドレス: <%= @user.email %></p>

@@ -1,13 +1,9 @@
 class Task < ApplicationRecord
+  belongs_to :user
   validates :title, presence: true
   validates :title, length: { maximum: 20 }  
   validates :content, presence: true
   validates :content, length: { maximum: 50 }  
-#  validates :end_limit, presence: true
- # validates :priority, presence: true
- # validates :status, presence: true
-
-
   validate :end_limit_cannot_be_in_the_past
 
   def end_limit_cannot_be_in_the_past
@@ -15,5 +11,4 @@ class Task < ApplicationRecord
       errors.add(:end_limit, ": 過去の日付は使えません")
     end
   end
-
 end
