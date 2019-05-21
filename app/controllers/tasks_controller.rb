@@ -5,24 +5,27 @@ class TasksController < ApplicationController
 
   def index
     @tasks = current_user.tasks
-    @tasks = Task.page(params[:page]).per(10).order('created_at DESC')
+    
+   # @tasks = Task.page(params[:page]).per(10).order('created_at DESC')
+    @tasks = Task.all.order('created_at DESC')
     @q = Task.ransack(params[:q])
     @statues = ["未着手","着手中","完了"]
-    @priority = {高: 0, 中: 1, 低: 2}
+    #@priority = {高: 0, 中: 1, 低: 2}
 
     if params[:sort_expired]
       @tasks = Task.all.order(end_limit: :desc)
     end
 
     if params[:sort_priority]
-      #@tasks = Task.order(priority: :desc)
-      @tasks = Task.page(params[:page]).per(10).order(priority: :desc)
+     #binding.pry
+     @tasks = Task.all.order(priority: :asc)
+    #  @tasks = Task.page(params[:page]).per(10).order(priority: :asc)
     end
 
     if params[:q]
       @tasks = @q.result(distinct: true)
     end
-
+   # binding.pry
     @tasks = @tasks.page(params[:page]).per(10)
   end
   

@@ -14,6 +14,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'ransack'
 gem 'kaminari', '~> 0.17.0'
 gem 'bcrypt', '3.1.11'
+gem 'enum_help'
+gem 'kaminari-bootstrap', '~> 3.0.1'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.6.0'

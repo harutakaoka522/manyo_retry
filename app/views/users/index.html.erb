@@ -1,0 +1,24 @@
+<body>
+<header>
+<p>User List</p>
+<p id="notice"><%= notice %></p>
+</header>
+<div>
+
+    <% @users.each do |user| %>
+    
+        
+        <% if current_user.admin? && !(current_user == user) %>  
+        <%= link_to '新しくユーザーを作成する', new_user_path ,class: 'btn btn-primary btn-sm' %>
+        <p>名前: <%= user.name %></p>   
+        <p>タスク数: <td><%= user.tasks.count %></td>
+        <p><%= link_to '確認', user, class:'btn-top-radius' %>
+        <%= link_to '編集', edit_user_path(user) , class:'btn-top-radius' %>
+        <%= link_to '削除', user, method: :delete, data: { confirm: '実行しますか?' } , class:'btn-top-radius' %></p>
+<br>
+<% end %>
+
+<% end %>
+</div>
+</div>
+</body>

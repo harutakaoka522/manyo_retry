@@ -34,7 +34,7 @@
 
   <div class="task_priority"><br>
     <%= form.label :優先順位 %>
-    <%= form.select :priority,[["低","低"],["中","中"],["高","高"]] %>
+    <%= form.select :priority,Task.priorities.keys.to_a, {} %>
   </div>
   <br>
   <%= form.submit %>
