@@ -1,6 +1,7 @@
 class Admin::UsersController < ApplicationController
   before_action :not_admin_user
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :admin_edit_destroy, only: [:edit, :update, :destroy]
  # before_action :ensure_correct_user, only: [:show, :edit, :update, :destroy]
   #before_action :logging_in, only: [:new, :create, :confirm]
   def index
@@ -72,6 +73,12 @@ class Admin::UsersController < ApplicationController
     else
     redirect_to current_user, alert: '権限がありません'
     end
+  end
+
+  def admin_edit_destroy
+    if current_user == @user && current_user.admin?
+      redirect_to admin_user_path(@user), alert: '管理者の内容は編集できません'
+   end
   end
 end
 
