@@ -1,8 +1,6 @@
-
 <body>
-<header>
-<p>タスク一覧</p>
-</header>
+　 <header><p>タスク一覧</p></header>
+
 <%= search_form_for @q do |f| %>
     <%= f.label :title_cont, "タスク名検索" %>
     <%= f.search_field :title_cont %>
@@ -10,10 +8,7 @@
     <%= f.label :status_cont, "状態検索" %>
     <%= f.select :status_cont, @statues, include_blank: true %>
     
- 
-
     <%= f.hidden_field :search, value: 'true' %>
-
 
     <%= f.submit "検索" %>
     <% end %>
@@ -23,39 +18,34 @@
     <%= link_to "優先順位が高い順にソートする", tasks_path(sort_priority: "true") ,class: 'btn btn-primary btn-sm' %>
 <br>
 <div class="table-responsive">
-<table class="table table-striped">
-<tr>
-<th>タスク名</th>
-<th>タスク詳細</th>
-<th><%= sort_link(@q, :end_limit, '終了期限') %></th>
-<th>状態</th>
-<th>優先順位</th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-
+　 <table class="table table-striped">
+　   <tr>
+　     <th>タスク名</th>
+　     <th>タスク詳細</th>
+　     <th><%= sort_link(@q, :end_limit, '終了期限') %></th>
+　     <th>状態</th>
+　     <th>優先順位</th>
+　     <th></th>
+　     <th></th>
+　     <th></th>
+　   </tr>
 
 <% @tasks.each do |task| %>
     <% if current_user.id == task.user_id %>　
-<tr>
-
-<td><%= task.title %></td>
-<td><%= task.content %></td>
-<td><%= task.end_limit %></td>
-<td><%= task.status %></td>
-<td><%= task.priority %></td>
-
-<td><%= link_to '詳細', task_path(task.id) %></td>
-<td><%= link_to '編集', edit_task_path(task.id) %></td>
-<td><%= link_to '削除', task_path(task.id), method: :delete,data: { confirm: '本当に削除していいですか？' } %></td>
-</tr>
+　   <tr>
+　     <td><%= task.title %></td>
+　     <td><%= task.content %></td>
+　     <td><%= task.end_limit %></td>
+　     <td><%= task.status %></td>
+　     <td><%= task.priority %></td>
+　     <td><%= link_to '詳細', task_path(task.id) %></td>
+　     <td><%= link_to '編集', edit_task_path(task.id) %></td>
+　     <td><%= link_to '削除', task_path(task.id), method: :delete,data: { confirm: '本当に削除していいですか？' } %></td>
+　   </tr>
 <% end %>
 <% end %>
-<%= paginate @tasks %>
-</table>
-
-
+　 <%= paginate @tasks %>
+　 </table>
 </div>
 </div>
 </body>

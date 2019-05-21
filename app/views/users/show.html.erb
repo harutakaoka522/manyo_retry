@@ -1,17 +1,16 @@
-<header>
-<p><%= @user.name %>のページ</p>
-</header>
-<%= link_to 'タスク一覧へ', tasks_path ,class: 'btn btn-primary btn-sm' %>
+<body>
+  <header><p><%= @user.name %>のページ</p></header>
+    <div>
+    <%= link_to 'タスク一覧へ', tasks_path ,class: 'btn btn-primary btn-sm' %>
 
-<p><strong>名前:</strong>
-  <%= @user.name %></p>
-
-<p><strong>メールアドレス:</strong>
-  <%= @user.email %></p>
-
-  <p><strong>タスク数:</strong>
-  <%= @user.tasks.count %></td>
-  <% if current_user.admin? %> 
-  <p><%= link_to '管理画面一覧', admin_users_path,class: 'btn btn-primary btn-sm' %>
-  <% end %>
-</div>
+      <p><strong>名前:</strong>
+      <%= @user.name %></p>
+      <p><strong>メールアドレス:</strong>
+      <%= @user.email %></p>
+      <p><strong>タスク数:</strong>
+      <%= @user.tasks.count %></td>
+    <% if current_user.admin? %> 
+      <p><%= link_to '管理画面一覧', admin_users_path,class: 'btn btn-primary btn-sm' %>
+    <% end %>
+    </div>
+</body>

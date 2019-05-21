@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   before_action :logging_in, only: [:new, :create, :confirm]
   def index
     if current_user.admin?
-      #@users = User.all
       @users = User.all.includes(:tasks).page(params[:page]).per(10)
     else
       redirect_to current_user, alert: '権限がありません'
@@ -82,8 +81,5 @@ class UsersController < ApplicationController
  def logging_in 
   redirect_to tasks_path, alert: '既にログインしています' if logged_in?
  end
-
-
-
 end
 

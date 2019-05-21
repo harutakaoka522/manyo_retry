@@ -6,7 +6,7 @@ class Admin::UsersController < ApplicationController
   def index
     if current_user.admin?
      # @users = User.all.includes(:tasks).page(params[:page]).per(4)
-      @users = User.includes(:tasks).page(params[:page]).per(5)
+      @users = User.includes(:tasks).order('created_at asc').page(params[:page]).per(4)
     else
       redirect_to current_user, alert: '権限がありません'
     end

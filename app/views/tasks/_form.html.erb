@@ -1,3 +1,6 @@
+<body>
+  <header><p>タスクを編集する</p></header>
+
 <%= form_with(model: @task, local: true, url: choose_new_or_edit) do |form| %>
   <% if @task.errors.any? %>
   <div id="error_explanation">
@@ -43,3 +46,4 @@
 
   <%= link_to "タスク一覧画面にもどる", tasks_path %>
   </div>
+</body>
