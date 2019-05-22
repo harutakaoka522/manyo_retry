@@ -29,6 +29,12 @@
       <%= form.text_field :password, id: :user_password %>
     </div>
 
+    
+    <div>
+    <%= form.label :admin %>
+    <%= form.check_box :admin, as: :boolean %>
+  </div>
+
     <div class="actions">
       <%= form.submit %>
     </div>
