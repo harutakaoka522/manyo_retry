@@ -1,6 +1,6 @@
-<header>
-<p>Log in</p>
-</header>
+<body>
+  <header><p>Log in</p></header>
+
 <div class="show_edit">
 <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
 
@@ -13,3 +13,4 @@
   <%= f.submit "Log in" %>
 <% end %>
 </div>
+</body>

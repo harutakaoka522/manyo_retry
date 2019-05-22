@@ -1,14 +1,12 @@
 <body>
-<header>
-<p>タスク詳細画面</p>
-</header>
-<div class="show_edit">
-  <p>タスク名: <%= @task.title %></p>
-  <p>タスク詳細: <%= @task.content %></p>
-  <p>終了期限:<%= @task.end_limit %></p>
-  <p>状態:<%= @task.status %></p>
-  <p>優先順位:<%= @task.priority %></p>
-  
-<%= link_to "タスク一覧画面にもどる", tasks_path %>
-</div>
+　 <header><p>タスク詳細画面</p></header>
+
+     <div class="show_edit">
+       <p>タスク名: <%= @task.title %></p>
+       <p>タスク詳細: <%= @task.content %></p>
+       <p>終了期限:<%= @task.end_limit %></p>
+       <p>状態:<%= @task.status %></p>
+       <p>優先順位:<%= @task.priority %></p>
+       <%= link_to "タスク一覧画面にもどる", tasks_path %>
+     </div>
 </body>

@@ -1,0 +1,42 @@
+<body>
+  <header><p>管理者画面(ユーザー登録)</p></header>
+
+  <%= form_with(model: [:admin, @user], local: true) do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "つのエラー") %> 下記理由によりエラーが発生しました！:</h2>
+
+      <ul class="ten-non">
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="field">
+      <%= form.label :name %><br>
+      <%= form.text_field :name, id: :user_name %>
+    </div>
+
+    <div class="field">
+      <%= form.label :email %><br>
+      <%= form.text_field :email, id: :user_email %>
+    </div>
+
+    <div class="field">
+      <%= form.label :password %><br>
+      <%= form.text_field :password, id: :user_password %>
+    </div>
+
+    
+    <div>
+    <%= form.label :admin %>
+    <%= form.check_box :admin, as: :boolean %>
+  </div>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>
+</body>

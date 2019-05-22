@@ -1,0 +1,19 @@
+<body>
+  <header><p><%= @user.name %>のページ</p></header>
+
+　    <p><strong>ID:</strong>
+     <%= @user.id %></p>
+
+　    <p><strong>admin:</strong>
+      <%= @user.admin %></p>
+
+　    <p><strong>名前:</strong>
+      <%= @user.name %></p>
+
+　    <p><strong>メールアドレス:</strong>
+      <%= @user.email %></p>
+
+   <% if current_user.admin? %> 
+      <p><%= link_to '管理画面一覧', admin_users_path,class: 'btn btn-primary btn-sm' %>
+   <% end %>
+</body>
