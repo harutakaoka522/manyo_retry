@@ -5,7 +5,7 @@ class TasksController < ApplicationController
 
   def index
     @tasks = current_user.tasks
-    
+    @labels = current_user.labels
    # @tasks = Task.page(params[:page]).per(10).order('created_at DESC')
     @tasks = Task.all.order('created_at DESC')
     @q = Task.ransack(params[:q])
@@ -38,11 +38,13 @@ class TasksController < ApplicationController
     end
   
     def show
+      binding.pry
     end
       
     def create
       @task = current_user.tasks.build(task_params)
       if @task.save
+       
         redirect_to tasks_path, notice: "タスクを作成しました"
       else
         render 'new'
@@ -54,6 +56,7 @@ class TasksController < ApplicationController
   
     def confirm
       @task = current_user.tasks.build(task_params)
+      
       render :new if @task.invalid?
     end
   
@@ -73,7 +76,7 @@ class TasksController < ApplicationController
     private
   
     def task_params
-      params.require(:task).permit(:title, :content, :end_limit, :status, :priority)
+      params.require(:task).permit(:title, :content, :end_limit, :status, :priority, label_ids:[])
     end
   
     def set_task

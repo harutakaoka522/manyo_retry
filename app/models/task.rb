@@ -1,5 +1,10 @@
 class Task < ApplicationRecord
   belongs_to :user, optional: true
+  has_many :task_labels, dependent: :destroy, inverse_of: :task
+  has_many :labels, through: :task_labels, source: :label
+
+  # task.labels 
+
   validates :title, presence: true
   validates :title, length: { maximum: 20 }  
   validates :content, presence: true
@@ -14,3 +19,19 @@ class Task < ApplicationRecord
     end
   end
 end
+
+
+# id = 1
+# task = Task.find(id)
+# task.labels = TaskLabel.where(task_id: id).map do |task_label|
+#   Label.find(task_label.label_id)
+# end
+
+# has_many(:tasks, foreign_key: :user_id, dependent: :destroy)
+#   def has_many(arg1)
+#      self.arg1 =  Arg1.where(arg1_id: self.id)
+#   end
+
+#   def has_many(tasks)
+#     self.tasks =  Task.where(user_id: self.id)
+#   end

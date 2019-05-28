@@ -1,0 +1,13 @@
+<body>
+  <header><p>label</p></header>
+    <div>
+
+<%= form_with(model: @label, local: true) do |f| %>  
+  <div class="show_edit">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %><br>
+
+    <%= f.submit "Create my account" %>
+  </div>
+<% end %>
+</body>
