@@ -1,6 +1,7 @@
 <body>
   <header><p>タスクを編集する</p></header>
-
+  
+  <div class="show_edit">
 <%= form_with(model: @task, local: true, url: choose_new_or_edit) do |form| %>
   <% if @task.errors.any? %>
   <div id="error_explanation">
@@ -41,10 +42,18 @@
   </div>
   <br>
   
+  <% unless action_name == 'new' %>
+  
   <% Label.all.each do |label| %>
-    <%= form.check_box :label_ids, { multiple:true, checked: label[:checked], disabled: label[:disabled],include_hidden: false }, label[:id] %>
-    <label><%= label.title %></label>
-    <% end %>
+    <div class= 'btn btn-success btn-sm'>
+
+    <%= form.check_box :label_ids, { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>
+    <%= label.title %></div>
+    <% end %>  
+  <% end %> 
+
+</div>
+<br>
   <%= form.submit %>
 <% end %>
 <br>

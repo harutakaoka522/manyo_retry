@@ -17,12 +17,17 @@
   <p>終了期限:<%= @task.end_limit %></p>
   <p>状態:<%= @task.status %></p>
   <p>優先順位:<%= @task.priority %></p>
-  <p>ラベル:<%= @task.labels %></p>
+  
+  <%= form.collection_check_boxes :label_ids, Label.all, :id, :title do |l| %>
+    <div class= 'btn btn-success btn-sm'><%= l.check_box + l.label %></div>
+  <% end %><br>
+  
+ <br>
   <%= form.submit "登録する" %>
-  <%= binding.pry %>
+  </div>
 <% end %>
 
-
+<div class="show_edit">
 <%= form_with(model: @task, url: new_task_path, local: true, method: 'get') do |form| %>
   <%= form.hidden_field :title %>
   <%= form.hidden_field :content %>

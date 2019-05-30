@@ -14,25 +14,17 @@ class User < ApplicationRecord
   def admin_user_destroy
     if admin && User.where(admin: true).count <= 1
       throw :abort
-     # redirect_to , alert: 'ユーザーの削除に失敗しました'
     end
   end
 
   private
 
 
-   def admin_user_update
+  def admin_user_update
     if self.admin == false && User.where(admin: true).count <= 1
-     # binding.pry
-      #&& User.where.not(admin: false).count == 0
-      #アドミンユーザーが１以下、自分がアドミンユーザー、
-      #&& self.admin = false
       throw :abort
-      #errors.add(:admin, ": 消しちゃダメです")
-     end
-    # binding.pry
     end
-
+  end
 end
 
 # task.users =>

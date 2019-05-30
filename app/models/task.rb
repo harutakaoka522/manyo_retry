@@ -3,8 +3,6 @@ class Task < ApplicationRecord
   has_many :task_labels, dependent: :destroy, inverse_of: :task
   has_many :labels, through: :task_labels, source: :label
 
-  # task.labels 
-
   validates :title, presence: true
   validates :title, length: { maximum: 20 }  
   validates :content, presence: true

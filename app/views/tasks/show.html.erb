@@ -7,13 +7,16 @@
        <p>終了期限:<%= @task.end_limit %></p>
        <p>状態:<%= @task.status %></p>
        <p>優先順位:<%= @task.priority %></p>
+       <div>
+       <p>ラベル:</p>
 
-       <div class="field">
-       <legend>ラベル</legend>
-       <% @task.labels.each do |label| %>
-        <% binding.pry %>
-         <%= label.name %>
-       <% end %>
+
+      <% @task.labels.each do |label| %>
+        <div class= 'btn btn-success btn-sm'><%= label.title  %></div>
+    <% end %>
+
+
+     </div>
      </div>
        <%= link_to "タスク一覧画面にもどる", tasks_path %>
 

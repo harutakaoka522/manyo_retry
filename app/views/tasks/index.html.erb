@@ -4,18 +4,20 @@
 <%= search_form_for @q do |f| %>
     <%= f.label :title_cont, "タスク名検索" %>
     <%= f.search_field :title_cont %>
-
+   
     <%= f.label :status_cont, "状態検索" %>
     <%= f.select :status_cont, @statues, include_blank: true %>
-    
-    <%= f.hidden_field :search, value: 'true' %>
 
+    <%= f.label :labels_title_cont,"ラベル" %>
+    <%= f.select :labels_title_cont, Label.all.map{|label| [label.title]}, include_blank: true %>
+    <%= f.hidden_field :search, value: 'true' %>
     <%= f.submit "検索" %>
     <% end %>
       
     <%= link_to '新しくタスクを投稿する', new_task_path ,class: 'btn btn-primary btn-sm' %>
     <%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") ,class: 'btn btn-primary btn-sm' %>
     <%= link_to "優先順位が高い順にソートする", tasks_path(sort_priority: "true") ,class: 'btn btn-primary btn-sm' %>
+    <%= link_to 'ラベル一覧へ', labels_path ,class: 'btn btn-primary btn-sm' %>
 <br>
 <div class="table-responsive">
 　 <table class="table table-striped">
@@ -25,7 +27,8 @@
 　     <th><%= sort_link(@q, :end_limit, '終了期限') %></th>
 　     <th>状態</th>
 　     <th>優先順位</th>
-　     <th></th>
+　     <th id="label1">ラベル</th>
+       <th></th>
 　     <th></th>
 　     <th></th>
 　   </tr>
@@ -38,17 +41,19 @@
 　     <td><%= task.end_limit %></td>
 　     <td><%= task.status %></td>
 　     <td><%= task.priority %></td>
+       <% end %>
+       <% task.labels.each do |label| %>
+       <td id="label1" class= 'btn btn-success btn-sm'><%= label.title %></td>
+       <% end %>
+
 　     <td><%= link_to '詳細', task_path(task.id) %></td>
 　     <td><%= link_to '編集', edit_task_path(task.id) %></td>
 　     <td><%= link_to '削除', task_path(task.id), method: :delete,data: { confirm: '本当に削除していいですか？' } %></td>
 　   </tr>
-<% end %>
+
 <% end %>
 　 <%= paginate @tasks %>
 　 </table>
-
-
-
 </div>
 </div>
 </body>

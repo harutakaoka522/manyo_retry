@@ -30,13 +30,12 @@ RSpec.feature "タスク管理機能", type: :feature do
   
    fill_in 'task_title', with: 'test_task_01'
    fill_in 'task_content', with: 'testtesttest'
-   fill_in 'task_end_limit', with: '2019-05-22'
+   fill_in 'task_end_limit', with: '2019-06-31'
    select '未着手', from: 'task_status'
    select '高', from: 'task_priority'
-
+   
   click_on '登録する'
-  
-
+  save_and_open_page
   expect(page).to have_content 'test_task_01'
   expect(page).to have_content 'testtesttest'
 end

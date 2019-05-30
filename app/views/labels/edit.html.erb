@@ -1,15 +1,5 @@
 <body>
-　 <header><p>タスクを編集する</p></header>
-<%= form_with(model: @label, local: true) do |form| %>
+　 <header><p>ラベルを編集する</p></header>
+<%= render 'form', label: @label %>
 
-
-    <div class="field">
-      <%= form.label :label %><br>
-      <%= form.text_field :label, id: :label_title %>
-    </div>
-  
-    <div class="actions">
-      <%= form.submit %>
-    </div>
-  <% end %>
 </body>

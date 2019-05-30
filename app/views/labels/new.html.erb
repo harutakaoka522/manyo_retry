@@ -1,6 +1,5 @@
 <body>
   <header><p>label</p></header>
-    <div>
 
 <%= form_with(model: @label, local: true) do |f| %>  
   <div class="show_edit">
@@ -8,6 +7,6 @@
     <%= f.text_field :title %><br>
 
     <%= f.submit "Create my account" %>
+    <% end %>
   </div>
-<% end %>
 </body>
