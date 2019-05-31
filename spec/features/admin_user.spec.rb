@@ -1,20 +1,16 @@
 require 'rails_helper.rb'
 
 RSpec.feature "タスク管理機能", type: :feature do
+  before do
+    @users = []
+    @admin = User.create(name: 'admin', email: 'admin@gmail.com', password: 'password',password_confirmation: 'password', admin: true)
+    @user = User.create(name: 'user1', email: 'user1@gmail.com', password: 'password',password_confirmation: 'password', admin: false)
+    visit new_session_path
 
-    
-
-    before do
-      @users = []
-      # 事前にアドミン権限ユーザーとテストユーザーを登録する
-      @admin = User.create(name: 'admin', email: 'admin@gmail.com', password: 'password',password_confirmation: 'password', admin: true)
-      @user = User.create(name: 'user1', email: 'user1@gmail.com', password: 'password',password_confirmation: 'password', admin: false)
-      visit new_session_path
-
-      fill_in 'session[email]', with: @admin.email 
-      fill_in 'session[password]', with: 'password' 
-      click_on "Log in"
-    end
+    fill_in 'session[email]', with: @admin.email 
+    fill_in 'session[password]', with: 'password' 
+    click_on "Log in"
+  end
 
   scenario "ユーザー情報が確認できること" do
     click_on "管理画面一覧"
@@ -22,8 +18,7 @@ RSpec.feature "タスク管理機能", type: :feature do
     expect(page).to have_content 'user1'
     expect(page).to have_content 'タスク数'
   end
-
-
+  
   scenario "ユーザー情報が編集できること" do
     click_on "管理画面一覧"
     click_on "編集" 
@@ -53,5 +48,3 @@ RSpec.feature "タスク管理機能", type: :feature do
     save_and_open_page
   end
 end
-
-#save_and_open_page

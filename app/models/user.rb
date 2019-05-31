@@ -19,7 +19,6 @@ class User < ApplicationRecord
 
   private
 
-
   def admin_user_update
     if self.admin == false && User.where(admin: true).count <= 1
       throw :abort

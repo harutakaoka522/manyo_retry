@@ -3,15 +3,14 @@ require 'rails_helper.rb'
 RSpec.feature "タスク管理機能", type: :feature do
 
   before do
- @user = User.create(name: 'test', email: 'aaa@gmail.com', password: 'password',password_confirmation: 'password')
- Label.create!(title: 'label01', user_id: @user.id)
- Label.create!(title: 'label02', user_id: @user.id)
- visit new_session_path
+    @user = User.create(name: 'test', email: 'aaa@gmail.com', password: 'password',password_confirmation: 'password')
+    Label.create!(title: 'label01', user_id: @user.id)
+    Label.create!(title: 'label02', user_id: @user.id)
+    visit new_session_path
  
- fill_in 'session[email]', with: @user.email 
- fill_in 'session[password]', with: 'password' 
- click_on "Log in"
-    
+    fill_in 'session[email]', with: @user.email 
+    fill_in 'session[password]', with: 'password' 
+    click_on "Log in"
   end
 
   scenario "タスク作成と同時にラベルを貼り付け出来るテスト" do
@@ -33,7 +32,7 @@ RSpec.feature "タスク管理機能", type: :feature do
     expect(page).to have_content 'label01'
   end
    
-   scenario "タスクに付与したラベルで検索が出来るテスト" do
+  scenario "タスクに付与したラベルで検索が出来るテスト" do
 
     click_on "タスク一覧へ"
     click_on "新しくタスクを投稿する"
@@ -54,9 +53,9 @@ RSpec.feature "タスク管理機能", type: :feature do
     expect(page).to have_content "test_task_01"
     click_on "詳細",match: :first
     expect(page).to have_content 'label01'
-   end
+  end
 
-   scenario "タスクからラベルを変更できるか" do
+  scenario "タスクからラベルを変更できるか" do
 
     click_on "タスク一覧へ"
 
@@ -80,5 +79,3 @@ RSpec.feature "タスク管理機能", type: :feature do
     expect(page).not_to have_content "label01"  
    end
 end
-
-#save_and_open_page
